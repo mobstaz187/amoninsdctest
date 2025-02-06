@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gaming Fonts */
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url('https://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pokemon Hollow';
+  src: url('https://db.onlinewebfonts.com/t/831e1f4da157d96bc996f8c9f5f1e578.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .aspect-16\/9 {
+    aspect-ratio: 16/9;
+  }
+
+  .pokemon-text {
+    font-family: 'Pokemon Solid', sans-serif;
+    -webkit-text-stroke: 1px #2563eb;
+    color: #ffffff;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+
+  .pokemon-text:hover {
+    color: #f0f0f0;
+    -webkit-text-stroke: 1px #1d4ed8;
+    filter: 
+      drop-shadow(0 1px 2px rgba(0,0,0,0.2))
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.4))
+      drop-shadow(0 0 16px rgba(255, 255, 255, 0.2));
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.4),
+      0 0 16px rgba(255, 255, 255, 0.2);
+  }
+
+  .pokemon-hollow {
+    font-family: 'Pokemon Hollow', sans-serif;
+    color: #ffffff;
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.5),
+      0 0 16px rgba(255, 255, 255, 0.3);
+  }
+
+  .pokeball-button {
+    @apply relative overflow-hidden border-2 border-[#991b1b];
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background: linear-gradient(180deg, #dc2626 50%, #ffffff 50%);
+    transform: rotate(45deg);
+  }
+
+  .pokeball-button::after {
+    content: '';
+    @apply absolute left-1/2 top-1/2 w-4 h-4 bg-white border-2 border-[#991b1b];
+    transform: translate(-50%, -50%) rotate(-45deg);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  .pokeball-button:hover {
+    @apply border-white;
+    animation: diamond-shake 0.5s ease-in-out;
+  }
+
+  @keyframes diamond-shake {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    25% { transform: rotate(35deg) scale(1.1); }
+    75% { transform: rotate(55deg) scale(1.1); }
+  }
+
+  .pokemon-panel {
+    @apply bg-[#1e3a8a]/30 backdrop-blur-md border border-white/20 rounded-lg;
+    box-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.15),
+      inset 0 0 16px rgba(255, 255, 255, 0.08);
+  }
+
+  .pokemon-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #1e3a8a 100%);
+  }
+
+  .pokemon-border {
+    @apply border border-white/20;
+    box-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.15),
+      inset 0 0 8px rgba(255, 255, 255, 0.08);
+  }
+
+  .pokemon-glow {
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.5),
+      0 0 16px rgba(255, 255, 255, 0.3);
+  }
+
+  .pixelated-circle {
+    image-rendering: pixelated;
+    clip-path: polygon(
+      40% 0%, 60% 0%, 
+      100% 40%, 100% 60%,
+      60% 100%, 40% 100%,
+      0% 60%, 0% 40%
+    );
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+    background: #ffffff !important;
+  }
+}
+
+/* Transition classes */
+.character-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.character-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 700ms, transform 700ms;
+}
+
+.character-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.character-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 700ms, transform 700ms;
+}
